@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bug Tracker</title>
+    <link rel="icon" href="Images/download1.jpg" type="image/x-icon">
+    <!-- CSS  -->
+    <!-- Compiled and minified CSS -->
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <!--icons cdn-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+        crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=KoHo" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <link rel="stylesheet" href="CSS/style.css">
+
+</head>
+
+<body>
+
+    <div class="navbar-fixed">
+        <nav class="deep-purple">
+            <div class="container">
+                <div class="nav-wrapper">
+                    <a href="#!" class="brand-logo">bug <span class="hide-on-small-only">tracker</span></a>
+                    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                    <ul class="right hide-on-med-and-down">
+                        <li>
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <ul class="sidenav" id="mobile-demo">
+        <li>
+
+        </li>
+    </ul>
+    <!--emf pf navbar-->
+
+
+    <section class="section">
+        <div class="container">
+
+
+            <div class="card-panel white lighten-2">
+                <div class="container">
+                    <h1 class="center-align">bug tracker</h1>
+
+                    <div class="col s12 m6">
+                        <form id="add_issues" onsubmit="return validate()">
+                            <p class="red-text"><b>note: bug-cpr should be unique</b></p>
+                            <p><b>Add New Issue:</b></p>
+
+                            <div class="row">
+                                <div class="input-field col s12 m6">
+                                    <i class="material-icons prefix">error</i>
+                                    <input id="cpr" type="text" class="validate" required>
+                                    <label for="cpr">enter bug-cpr no</label>
+                                </div>
+                                <div class="input-field col s12 m6">
+                                    <i class="material-icons prefix">error</i>
+                                    <input id="catid" type="text" class="validate" required>
+                                    <label for="catid">enter bug id</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">mode_edit</i>
+                                    <textarea id="description" class="materialize-textarea" data-length="30" class="validate"
+                                        required></textarea>
+                                    <label for="description">Enter short Bug description</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix validate" required>person_add</i>
+                                    <select required id="asgteam" required>
+                                        <option value="" selected>Assigned to:</option>
+                                        <option value="Help desk"> Help desk</option>
+                                        <option value="Net ops"> Net ops</option>
+                                        <option value="cat team"> cat team</option>
+                                        <option value="technology team"> technology team</option>
+                                        <option value="project manager"> project manager</option>
+                                        <option value="partner support"> partner support </option>
+                                    </select>
+                                    <label>Select Team</label>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <p><b>security credentials</b></p>
+                                <div class="input-field col s12 m6">
+                                    <i class="material-icons prefix">email</i>
+                                    <input id="email" name="email" type="email" class="validate" required>
+                                    <label for="email">enter email id</label>
+                                </div>
+                                <div class="input-field col s12 m6">
+                                    <i class="material-icons prefix">lock</i>
+                                    <input id="password" name="password" type="password" class="validate" required
+                                        onchange="validate()">
+                                    <span id="pshow"></span>
+                                    <label for="password">enter password</label>
+                                </div>
+                            </div>
+
+                            <div class="input-field col s6 center-align">
+                                <input id="btn" name="commit" type="submit" value="add issue" class="btn btn-small deep-purple white-text">
+
+                            </div>
+                            <div class="center-align">
+                                <a class="modal-trigger" href="#modal1">forget password?</a>
+                            </div>
+                        </form>
+                        <!--end of form-->
+                    </div>
+                    <!--end of col-->
+                </div>
+
+            </div>
+            <!--end of panel container-->
+        </div>
+        <!--end of panel card-->
+
+
+
+        </div>
+        <!--end of section container-->
+    </section>
+    <!--end of sectionn-->
+
+    <section class="section">
+        <div class="container">
+
+
+
+
+            <h4 class="center-align"><b>Here is the list of bugs already exists</b></h4>
+            <p id="res"></p>
+
+
+            <div class="row">
+                <div class="col s12 m6 ">
+
+
+                </div>
+
+                <div class="col s12 m6">
+                    <h6 class="center-align">Tickets status details :</h6>
+                    <br>
+                    <span id="close"></span>
+                    <span id="open"></span>
+
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+
+    <div class="container">
+
+        <table class="highlight centered responsive-table" id="myTable">
+
+            <thead>
+                <tr>
+                    <th>s.no</th>
+                    <th>Cprprd No</th>
+                    <th>Catlog id</th>
+                    <th>Bug Description</th>
+                    <th>Assigned team to</th>
+                    <th>created by</th>
+                    <th>created on</th>
+                    <th>status</th>
+
+                </tr>
+            </thead>
+
+            <tbody id="tbody">
+
+            </tbody>
+
+        </table>
+
+
+
+    </div>
+
+    <section class="section">
+        <div class="container center-align" id="no-data">
+            <div class="lds-roller" id="load">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="section deep-purple white-text center">
+        <p class="flow-text">Bug tracker &copy; 2019 </p>
+    </footer>
+
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <h4 class="center-align deep-purple-text">security credentials</h4>
+
+            <form id="forget_password">
+                <p>Please fill the below details to get your password</p>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="email1" type="email" class="validate">
+                        <label for="email1">Enter your e-mail</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="cpr1" type="text" class="validate">
+                        <label for="cpr1">enter bugprd</label>
+                    </div>
+                </div>
+
+                <div class="input-field col s6 center-align">
+                    <input type="submit" class="btn btn-small deep-purple">
+
+                </div>
+            </form>
+        </div>
+
+    </div>
+    <!--end of forget_password model-->
+
+    <!--start of edit_issue model-->
+
+
+
+    <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
+    <script src="http://chancejs.com/chance.min.js"></script>
+    <script src="Javascript/main.js"></script>
+    <script src="Javascript/Materalize.js"></script>
+</body>
+
+</html>
